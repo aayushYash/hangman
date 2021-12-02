@@ -111,7 +111,7 @@ let arrayOfRandWord;
 let omittedLetters = []
 let count = 0;
 let score = 0;
-let highScore = localStorage.getItem('highest');
+let highScore = (localStorage.getItem('highest') === null)? 0 : localStorage.getItem('highest');
 
 function updateLog(){
     result.innerHTML = '';
