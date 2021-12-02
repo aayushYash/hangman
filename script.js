@@ -199,6 +199,7 @@ function check() {
                 count = 10;
                 score += 10;
                 currentScore.innerHTML = score.toString();
+                updateHighScore();
                 gameOver = true;
                 loose = false;
                 break;
@@ -219,6 +220,7 @@ function check() {
         console.log(count,'00');
         result.classList.add('wrong')
         result.innerHTML = `Game Over.${'<br>'}Correct name was: ${randWord}`;
+        // updateHighScore()
         score = 0;
         currentScore.innerHTML = score.toString();
         // console.log('sleep1');
