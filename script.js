@@ -176,7 +176,7 @@ createRandom();
 function check() {
     let guess;
     let isPresent = false;
-    guess = input.value.toString();
+    guess = input.value.toLowerCase();
     // console.log();
     for(let i = 0; i < omittedLetters.length; i++){
         if(guess === omittedLetters[i]){
