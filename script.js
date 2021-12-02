@@ -11,7 +11,6 @@ const guess_output = document.querySelector('.guess_output');
 const result = document.querySelector('.result');
 const currentScore = document.querySelector('.currentScoreValue');
 const highestScore =document.querySelector('.highestScoreValue');
-// const right_leg = document.querySelector('.right_leg')
 const newGame = document.querySelector('.newGame');
 
 const checkBtn = document.querySelector('#check');
@@ -20,28 +19,6 @@ const resetBtn = document.querySelector('#reset');
 
 
 const hangman_parts = [head, body, left_hand, right_hand, left_leg, right_leg];
-
-console.log(hangman_parts.length);
-
-
-// localStorage.setItem('name', 'aayush');
-function sleep(milliseconds) {
-    const date = Date.now();
-    let currentDate = null;
-    do {
-      currentDate = Date.now();
-    } while (currentDate - date < milliseconds);
-  }
-
-function refreshHangman(){
-    // sleep(2000);
-    for(let i = 0;i < hangman_parts.length;i++){
-        hangman_parts[i].style.maxHeight = '0';
-    }
-}
-//     console.log('try.');
-//     console.log(head)
-// }
 
 const word_list = [
     'alligator',
@@ -111,6 +88,21 @@ const word_list = [
     'yak',
     'zebra'    
 ];
+
+function sleep(milliseconds) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+  }
+
+function refreshHangman(){
+    for(let i = 0;i < hangman_parts.length;i++){
+        hangman_parts[i].style.maxHeight = '0';
+    }
+}
+
 
 let randInt;
 let randWord;
