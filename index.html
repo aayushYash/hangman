@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangman</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main">
+        <div class="diagram_container">
+            <h3>hangman</h3>
+            <h4 class="newGame"></h4>
+            <div class="stand_base stand"></div>
+            <div class="stand_rod stand"></div>
+            <div class="stand_top stand"></div>
+            <div class="stand_tip stand"></div>
+
+            <div class="hangman_container">
+                <div class="head hangman">
+                    <div class="head_transparent"></div>
+                </div>
+                <div class="body hangman"></div>
+                <div class="left_hand hangman"></div>
+                <div class="right_hand hangman"></div>
+                <div class="left_leg hangman"></div>
+                <div class="right_leg hangman"></div>
+            </div>
+        </div>
+        <div class="input_section">
+            <h2>HANGMAN GAME</h2>
+            <span class="random">R_ _ om _o_d</span>
+            <input type="text" name="" id="word_input" maxlength="1">
+            <input type="button" value="Check Guess" onclick="check()" id="check">
+            <input type="button" value="Restart" onclick="reset()" disabled id="reset">
+            <div class="output_log">
+                <span class="guess_output"></span>
+                <div class="current">
+                    <span>Current Score: </span>
+                    <span class="currentScoreValue">0</span>
+                </div>
+                <div class="result">
+
+                </div>
+                <div class="highest">
+                    <span>Highest Score: </span>
+                    <span class="highestScoreValue">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
