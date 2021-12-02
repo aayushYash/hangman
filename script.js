@@ -16,6 +16,9 @@ const newGame = document.querySelector('.newGame');
 const checkBtn = document.querySelector('#check');
 const resetBtn = document.querySelector('#reset');
 
+if(localStorage.getItem('highest') === null){
+    localStorage.setItem('highest', 0);
+}
 
 
 const hangman_parts = [head, body, left_hand, right_hand, left_leg, right_leg];
@@ -111,7 +114,9 @@ let arrayOfRandWord;
 let omittedLetters = []
 let count = 0;
 let score = 0;
-let highScore = (localStorage.getItem('highest') === null)? 0 : localStorage.getItem('highest');
+let highScore = (localStorage.getItem('highest'));
+
+console.log(highScore);
 
 function updateLog(){
     result.innerHTML = '';
@@ -176,8 +181,8 @@ createRandom();
 function check() {
     let guess;
     let isPresent = false;
-    guess = input.value.toLowerCase();
-    // console.log();
+    guess = input.value.toLowerCase() ;
+    console.log(guess);
     for(let i = 0; i < omittedLetters.length; i++){
         if(guess === omittedLetters[i]){
             isPresent = true;
@@ -196,7 +201,7 @@ function check() {
             if(randWord ===  arrayOfRandWord.join('')){
                 result.classList.remove('wrong')
                 result.innerHTML = 'You Guessed the Name correctly.'
-                count = 10;
+                // count = 10;
                 score += 10;
                 currentScore.innerHTML = score.toString();
                 updateHighScore();
@@ -215,21 +220,22 @@ function check() {
         guess_output.innerHTML = `Oops letter ${guess} is not present in it.`;
         hangman_parts[count].style.maxHeight = '100%';
         console.log(count);
+        if (count === hangman_parts.length - 1){
+            console.log(count,'00');
+            result.classList.add('wrong')
+            result.innerHTML = `Game Over.${'<br>'}Correct name was: ${randWord}`;
+            // updateHighScore()
+            score = 0;
+            currentScore.innerHTML = score.toString();
+            // console.log('sleep1');
+            // sleep(2000);
+            // console.log('sleep2');
+            loose = false
+            gameOver = true;
+        }
+        count++;
+
     }
-    if (count === hangman_parts.length - 1){
-        console.log(count,'00');
-        result.classList.add('wrong')
-        result.innerHTML = `Game Over.${'<br>'}Correct name was: ${randWord}`;
-        // updateHighScore()
-        score = 0;
-        currentScore.innerHTML = score.toString();
-        // console.log('sleep1');
-        // sleep(2000);
-        // console.log('sleep2');
-        loose = false
-        gameOver = true;
-    }
-    count++;
     input.value=''
     if(gameOver || loose){
         // setTimeout(createRandom(),5000);
