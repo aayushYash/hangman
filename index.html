@@ -6,9 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hangman</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" >
+    <script type="text/javascipt" src="wordList.js"></script>
 </head>
 <body>
-    <!-- <input type="button" value="Start Game" onclick="reset()"> -->
+    <div class="scoresDetails">
+        <div class="current">
+            <span>Current Score: </span>
+            <span class="currentScoreValue">0</span>
+        </div>
+        <div class="highest">
+            <span>Highest Score: </span>
+            <span class="highestScoreValue">0</span>
+        </div>
+        <div class="help">
+            <i class="fas fa-question-circle"></i>           
+        </div>
+        <div class="help_details"> 
+            <h3>Objective:</h3>
+            <span>Guess the word before your mangets hung!</span>
+            <h3>Objective</h3>
+            <span>For guessing each letter you get 1 point.</span>
+            <h3>Hint:</h3>
+            <span>Hint shows, to what the word is related to.</span> 
+            <h3>Hint:</h3>
+            <span>Hint Button: You can get 2 letter for each word.</span> 
+        </div>       
+    </div>
+    <h3 class="gameName">HANGMAN WORD GAME</h3>
     <div class="main">
         <div class="diagram_container">
             <h3>hangman</h3>
@@ -30,27 +55,91 @@
             </div>
         </div>
         <div class="input_section">
-            <h2>HANGMAN GAME</h2>
-            <span class="random">R_ _ om _o_d</span>
-            <input type="text" name="" id="word_input" maxlength="1">
-            <input type="button" value="Check Guess" onclick="check()" id="check">
-            <input type="button" value="Restart" onclick="reset()" disabled id="reset">
-            <div class="output_log">
-                <span class="guess_output"></span>
-                <div class="current">
-                    <span>Current Score: </span>
-                    <span class="currentScoreValue">0</span>
+           <div class="word">
+                <div class="hint">
+                    <div>
+                        <span>HINT: </span>
+                        <span class="hintWord"></span>
+                    </div>
+                    <span class="hintBtn" onclick="generateLetter()"><i class="fas fa-lightbulb"></i></span>
+                    <span class="noHintLeft">No Hint Left</span>
                 </div>
-                <div class="result">
-                    
+                <span class="random">R_ _ om _o_d</span>
+           </div>
+            <div class="input_keyboard">
+                <div class="keys">
+                    <input type="button" value="A" onclick="check(this.value,this.name)" class="inputBtn" name="a">
+                    <input type="button" value="B" onclick="check(this.value,this.name)" class="inputBtn" name="b">
+                    <input type="button" value="C" onclick="check(this.value,this.name)" class="inputBtn" name="c">
+                    <input type="button" value="D" onclick="check(this.value,this.name)" class="inputBtn" name="d">
+                    <input type="button" value="E" onclick="check(this.value,this.name)" class="inputBtn" name="e">
+                    <input type="button" value="F" onclick="check(this.value,this.name)" class="inputBtn" name="f">
+                    <input type="button" value="G" onclick="check(this.value,this.name)" class="inputBtn" name="g">
                 </div>
-                <div class="highest">
-                    <span>Highest Score: </span>
-                    <span class="highestScoreValue">0</span>
+                <div class="key">
+                    <input type="button" value="H" onclick="check(this.value,this.name)" class="inputBtn" name="h">
+                    <input type="button" value="I" onclick="check(this.value,this.name)" class="inputBtn" name="i">
+                    <input type="button" value="J" onclick="check(this.value,this.name)" class="inputBtn" name="j">
+                    <input type="button" value="K" onclick="check(this.value,this.name)" class="inputBtn" name="k">
+                    <input type="button" value="L" onclick="check(this.value,this.name)" class="inputBtn" name="l">
+                    <input type="button" value="M" onclick="check(this.value,this.name)" class="inputBtn" name="m">
+                    <input type="button" value="N" onclick="check(this.value,this.name)" class="inputBtn" name="n">
+                </div>
+                <div class="keys">
+                    <input type="button" value="O" onclick="check(this.value,this.name)" class="inputBtn" name="o">
+                    <input type="button" value="P" onclick="check(this.value,this.name)" class="inputBtn" name="p">
+                    <input type="button" value="Q" onclick="check(this.value,this.name)" class="inputBtn" name="q">
+                    <input type="button" value="R" onclick="check(this.value,this.name)" class="inputBtn" name="r">
+                    <input type="button" value="S" onclick="check(this.value,this.name)" class="inputBtn" name="s">
+                    <input type="button" value="T" onclick="check(this.value,this.name)" class="inputBtn" name="t">
+                </div>
+                <div class="keys">                       
+                    <input type="button" value="U" onclick="check(this.value,this.name)" class="inputBtn" name="u">
+                    <input type="button" value="V" onclick="check(this.value,this.name)" class="inputBtn" name="v">
+                    <input type="button" value="W" onclick="check(this.value,this.name)" class="inputBtn" name="w">
+                    <input type="button" value="X" onclick="check(this.value,this.name)" class="inputBtn" name="x">
+                    <input type="button" value="Y" onclick="check(this.value,this.name)" class="inputBtn" name="y">
+                    <input type="button" value="Z" onclick="check(this.value,this.name)" class="inputBtn" name="z">
                 </div>
             </div>
+            
         </div>
     </div>
+    
+    <div class="result_popup" id="restart_popup">
+        <div class="popup_content">
+            <div class="answer">
+                <span>Correct Answer</span>
+                <span class="correct_answer">Random!</span> 
+            </div>
+            <div class="yourScore">
+                <span>Your Score!</span>
+                <span class="yourScoreValue"></span>
+            </div>
+            <div class="highScoreCreated">
+                <span>New High Score!</span>
+                <span class="yourNewHighScore"></span>
+            </div>
+            <div class="result fail">
+                Game Over. 
+                Retry.        
+            </div>
+            <span class="restart" onclick="restartMethod()"><i class="fas fa-redo"></i></span>
+        </div>
+    </div>
+    <div class="result_popup" id="continue_popup">
+        <div class="popup_content">
+            <div>
+                <span>Correct Answer</span>
+                <span class="correct_answer">Random!</span> 
+            </div>
+            <div class="result pass">
+                Well Done.
+            </div>
+            <span class="continue" onclick="continueMethod()"><i class="fas fa-forward"></i></span>
+        </div>
+    </div>
+    
     <script src="script.js"></script>
 </body>
 </html>
