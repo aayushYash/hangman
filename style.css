@@ -13,6 +13,12 @@ body{
     justify-content: center;
     overflow: hidden;
 }
+
+.dark{
+    background: #122;
+    color: white;
+
+}
 .scoresDetails{
     top: 0;
     margin-bottom: 20px;
@@ -26,7 +32,86 @@ body{
     justify-content: space-between;
     align-items: baseline;
     margin-top: 2px;
-    font-size: 3.2vw;
+    font-size: clamp(2.01vh,1.5em,2.2vw);
+    font-weight: 800;
+}
+
+.scoresDetails .scores{
+    display: grid;
+    place-items: center;
+    /* background-color: red; */
+    text-align: left;
+}
+
+.scoresDetails .scores div{
+    /* background: white; */
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+
+}
+
+.widget{
+    display: flex;
+    width: 20%;
+    gap: 10px;
+    /* background-color: blue; */
+    justify-content: space-evenly;
+    align-items: center;
+    font-size: clamp(1.5vw,1.5em,3vw);
+    z-index: 10000;
+    margin-right: 20px;
+}
+
+.widget .toggleColorMode{
+    height: 100%;
+    /* overflow: hidden; */
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.widget .musicControl{
+    height: 100%;
+    /* overflow: hidden; */
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+    margin-right: 10px;
+}
+.widget .toggleColorMode .darkBtn{
+    display: block;
+}
+
+.widget .toggleColorMode .brightBtn{
+    display: none;
+}
+.widget .musicControl i{
+    position: absolute;
+}
+
+.widget .musicControl .play{
+    display: block;
+}
+.widget .musicControl .pause{
+    display: none;
+}
+
+.widget .toggleColorMode i{
+    position: absolute;
+    /* background-color: red; */
+}
+
+.widget .save{
+    cursor: pointer;
 }
 
 .scoresDetails .current{
@@ -34,13 +119,15 @@ body{
 }
 
 .scoresDetails .help{
-    margin-right: 10px;
-    border: 1px solid #fff;
-    padding: 5px;
+    /* margin-right: 2vw; */
+    /* padding: 5px; */
+    width: fit-content;
     border-radius: 50%;
     /* height: 20px; */
-    aspect-ratio: 1;
-    display: grid;
+    /* aspect-ratio: 1; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     place-items: center;
     cursor: pointer;
     z-index: 1000;
@@ -58,8 +145,14 @@ body .scoresDetails .help_details{
     backdrop-filter: blur(10px);
     /* transition: 1s; */
     visibility: hidden;
-    font-size: 1.5vw;
+    font-size: clamp(1.5vw,1.5em, 2.8vw);
+    /* font-size: clamp(1.5vw); */
     /* height: 40px; */
+}
+
+
+.dark .scoresDetails .help_details{
+    background: rgba(0, 0, 0, 0.493);
 }
 
 body .help:active + .help_details{
@@ -77,20 +170,21 @@ body .help:focus + .help_details{
     top: 20px;
 }
 .main{
-    height: 90vh;
-    width: 100vw;
+    height: 100vh;
+    width: 100%;
     position: relative;
     /* background-color: red; */
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     column-gap: 10px;
 }
 .diagram_container{
-    height: 50%;
+    height: 40%;
     width: 100%;
     /* background-color: blue; */
+
     position: relative;
 }
 .stand{
@@ -178,6 +272,10 @@ body .help:focus + .help_details{
 
 }
 
+.dark .main .diagram_container .hangman_container .head .head_transparent{
+    background: #122;
+}
+
 .main .diagram_container .hangman_container .body{
     height: 50px;
     width: 4px;
@@ -221,10 +319,13 @@ body .help:focus + .help_details{
     transform: rotate(30deg);
 }
 .main .diagram_container h3{
-    display: grid;
+    display: flex;
     width: 100%;
     /* background: red; */
-    place-items: center;
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    /* place-items: center; */
     padding: 5px;
     font-size: 5vw;
 }
@@ -241,16 +342,37 @@ body .help:focus + .help_details{
     /* box-shadow: 1px 2px 10px -5px rgba(255, 255, 255, 1),
         inset 1px 2px 10px 5px rgba(255, 255, 255, 1); */
     position: relative;
-    margin: auto;
+    margin: 0 auto;
     box-shadow: 0 0 5px 3px rgba(255, 255, 255, 1);
     gap: 1px;
+
     
+    
+}
+
+.dark .main .input_section{
+    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 1);
+
+}
+
+.main .input_section .setTimer{
+    /* background: red; */
+    width: 200px;
+    height: 20px;
+    position: absolute;
+    top: -30px;
+    text-align: center;
+    display: none;
 }
 
 .main .input_section h2{
     position: absolute;
     top: 20px;
     border-bottom: 1px solid rgba(255,255,255,1);
+}
+.dark .main .input_section h2{
+    border-bottom: 1px solid rgba(0,0,0,1);
+
 }
 .main .input_section span{
     margin-bottom: 20px;
@@ -277,10 +399,13 @@ body .help:focus + .help_details{
     text-transform: uppercase;
     cursor: pointer;
     /* margin-bottom: 10px; */
-    height: 40px;
+    /* height: 40px;
+    aspect-ratio: 1; */
+    /* font-size: 3.5vw; */
+    font-size: 1.7em;
     aspect-ratio: 1;
-    font-size: 3vw;
     text-align: center;
+    padding: 0.2em;
     /* padding: 1em; */
     /* display: grid; */
     /* place-items: center; */
@@ -289,14 +414,29 @@ body .help:focus + .help_details{
 
 }
 
+.dark .main .input_section input[type="button"]{
+    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 1);
+}
+
 .main .input_section .input_keyboard{
     margin-top: 15px;
-    display: grid;
+    display: flex;
+    flex-direction: column;
     gap: 0.5em;
     position: absolute;
     bottom: 20px;
-    grid-template-rows: repeat(4, 1fr);
-    place-items: center;
+    align-items: center;
+    justify-content:center;
+    /* background-color: blue; */
+    width: 100%;
+}
+.main .input_section .input_keyboard .keys{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* width: 90%; */
+    gap: 15px;
+
 }
 
 .main .input_section .word{
@@ -315,12 +455,12 @@ body .help:focus + .help_details{
     text-align: center;
     /* display: none; */
     visibility: hidden;
+    transition: 0.5s;
+}
+.dark .main .input_section .word .hint .noHintLeft{
+    background: #000;
 }
 
-.grid-col-span{
-    /* background-color: red; */
-    grid-column: span 2;
-}
 
 .result_popup{
     position: relative;
@@ -353,6 +493,10 @@ body .help:focus + .help_details{
     border-radius: 20px;
     transition: 1000ms;
 }
+.dark .popup_content{
+    background-color: #122;
+    border: 1px solid #000;
+}
 #restart_popup{
     display: none;
 }
@@ -374,10 +518,10 @@ body .help:focus + .help_details{
 }
 
 .popup_content .fail{
-    color: red;
+    color: rgb(243, 84, 84)(170, 170, 170);
 }
 .popup_content .pass{
-    color: green;
+    color: rgb(89, 248, 89);
 }
 .popup_content .result{
     text-align: center;
@@ -385,28 +529,20 @@ body .help:focus + .help_details{
 }
 
 
-
-.guess_output, .result{
-    color: green;
-    width: 100%;
-} 
-.wrong{
-    color: red;
-}
-
 .restart{
     /* position: relative; */
     cursor: pointer;
+    font-size: 2.5vw;
     /* z-index: 10000; */
 }
 
-.restart:hover {
-    box-shadow: 0 0 1px rgba(0, 0, 0, 0.493);
-}
+
 
 .continue{
     /* position: relative; */
     cursor: pointer;
+    font-size: 2.5vw;
+
     /* z-index: 10000; */
 }
 
@@ -444,6 +580,9 @@ body .help:focus + .help_details{
                 inset 1px 2px 10px 5px rgba(255, 255, 255, 1); */
         left: 10px;
         bottom: 10px;
+    }
+    .main .diagram_container h3{
+        top: 0%;
     }
     
     .main .input_section{
