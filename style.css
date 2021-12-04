@@ -167,7 +167,7 @@ body .help:focus + .help_details{
     position: relative;
     text-align: center;
     margin: 20px auto;
-    top: 20px;
+    top: 30px;
 }
 .main{
     height: 100vh;
@@ -355,14 +355,16 @@ body .help:focus + .help_details{
 
 }
 
-.main .input_section .setTimer{
+.main .diagram_container .setTimer{
     /* background: red; */
-    width: 200px;
+    width: 100%;
+    font-weight: 900;
     height: 20px;
     position: absolute;
     top: -30px;
     text-align: center;
-    display: none;
+
+    /* display: none; */
 }
 
 .main .input_section h2{
