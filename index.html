@@ -7,16 +7,18 @@
     <title>Hangman</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" >
+    <link rel="icon" href="icon.svg" type="image/svg" sizes="16x16">
     <script type="text/javascipt" src="wordList.js"></script>
 </head>
 <body >
-    <audio src=""  style="position: absolute;z-index: 1000;">
+    <audio src=""  style="position: absolute;z-index: 1000;" autoplay>
         Your browser does not support the audio element.
     </audio>
-    <audio src=""  style="position: absolute;z-index: 1000;" class="audio2">
+    <audio src=""  style="position: absolute;z-index: 1000;" class="audio2" autoplay>
         Your browser does not support the audio element.
     </audio>
-    <audio src="game_sounds/background1.mp3"  style="position: absolute;z-index: 1000;" class="audio3" loop autoplay  aria-disabled="false">
+    <audio style="position: absolute;z-index: 1000;" class="audio3" loop aria-disabled="false" autoplay>
+        <source src="game_sounds/background1.mp3">
         Your browser does not support the audio element.
     </audio>
     <div class="scoresDetails">

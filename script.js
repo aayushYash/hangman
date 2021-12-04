@@ -36,8 +36,13 @@ let allInputBtn = document.querySelectorAll('.inputBtn');
 
 const backgroundAudio = document.querySelector('.audio3');
 
-
-backgroundAudio.volume = 0.3;
+window.onload = function(){
+    console.log('hello');
+    backgroundAudio.pause();
+    backgroundAudio.load();
+    backgroundAudio.volume = 0.3;
+}
+    
 
 
 const hangman_parts = [head, body, left_hand, right_hand, left_leg, right_leg];
@@ -169,6 +174,16 @@ let loose = false;
 let highScore = localStorage.getItem('highest');
 let generateLeft = 1;
 
+const path = ['game_sounds/tap.wav','game_sounds/correct_word.wav','game_sounds/correct_guess.wav','game_sounds/wrong_guess.wav','game_sounds/newHighScore.wav','game_sounds/game_over.wav']
+
+function audioFunction(path){
+    audio.src = path;
+    audio.load();
+    setTimeout(() => {
+        audio.pause();
+    },1000);
+}
+
 
 function toggleMode(){
     if(docBody.classList.contains('dark')){
@@ -181,15 +196,18 @@ function toggleMode(){
         darkBtn.style.display = 'none';
         brightBtn.style.display = 'block';
     }
-    audio.src = 'game_sounds/tap.wav';
-    audio.play();
+    audioFunction(path[0]);
 }
 
 function countdown(){
     setTimeout(function(){
         audio2.src = 'game_sounds/countdown2.mp3';
-        audio2.play();
+        audio2.load();
     },1000)
+    setTimeout(() => {
+        audio.pause();
+    },1000);
+    
     // console.log('contdownfunct');
 }
 
@@ -318,8 +336,6 @@ createRandomWord();
 let isPresent;
 
 function check(valueGot,nameGot){
-    audio.src = 'game_sounds/click.wav';
-    audio.play();
     // getting the value from clicked button
     let guess = valueGot.toLowerCase();
     let name = nameGot;
@@ -347,12 +363,10 @@ function check(valueGot,nameGot){
                 // updateHighScore();
                 gameOver = true;
                 loose = false;
-                audio.src = 'game_sounds/correct_word.wav';
-                audio.play();
+                audioFunction(path[1]);
                 break;
             }
-            audio.src = 'game_sounds/correct_guess.wav';
-            audio.play();
+            audioFunction(path[2]);
             break;
         }
         
@@ -360,8 +374,7 @@ function check(valueGot,nameGot){
     if(!isPresent){
         mistakes++;
         hangman_parts[mistakes].style.maxHeight = '100%';     
-        audio.src = 'game_sounds/wrong_guess.wav';
-        audio.play();  
+        audioFunction(path[3])
     }
 
     if (mistakes === hangman_parts.length - 1){
@@ -378,16 +391,14 @@ function check(valueGot,nameGot){
             // console.log(score,'in if')
             document.querySelector('.highScoreCreated').style.display = 'grid';
             document.querySelector('.yourScore').style.display = 'none';
-            audio.src = 'game_sounds/newHighScore.wav';
-            audio.play(); 
+            audioFunction(path[4]);
         }
         else{
             updateHighScore();
             // console.log(score,'in if')
             document.querySelector('.highScoreCreated').style.display = 'none';
             document.querySelector('.yourScore').style.display = 'grid';
-            audio.src = 'game_sounds/game_over.wav';
-            audio.play();
+            audioFunction(path[5]);
         }
         // document.querySelector('.yourScoreValue').innerHTML = 
         // console.log('sleep2');
@@ -414,54 +425,30 @@ function reset(){
     continue_popup.style.display = 'none';
     restart_popup.style.display = 'none';
     disableAllBtn();
-    // inputBtn.disabled = false;
-    // console.log(reset);
-    // console.log(popEleIndex);
-    // console.log(elementArray);
     countdown();
     setTimer(3);
-
-
-    // while(popEleIndex>0){
-    //     poppedEle = elementArray.shift();
-    //     console.log(poppedEle,popEleIndex);
-    //     poppedEle.disabled = false;
-    //     popEleIndex--;
-    // }
 }
 
 function restartMethod(){
     updateScore();
-    
     refreshHangman(); 
     random_word.innerHTML = '';
     hint_word.innerHTML = '';
-    // setTimeout(function(){
-    //     createRandomWord();
-    // }, 5000)
-    // createRandomWord();
     updateHighScore();
     reset();
     score = 0;
     updateScore();
     generateLeft = 1;
-    audio.src = 'game_sounds/tap.wav';
-    audio.play();
+    audioFunction(path[0]);
 }
 
 function continueMethod(){
     refreshHangman(); 
     random_word.innerHTML = '';
     hint_word.innerHTML = '';
-    // setTimeout(() => {
-    //     createRandomWord();
-    // }, 5000); 
-    // updateHighScore();
     reset();
     generateLeft = 1;
-    audio.src = 'game_sounds/tap.wav';
-    audio.play();
-    // setTimer(5);
+    audioFunction(path[0]);
 }
 
 function generateLetter(){
@@ -472,28 +459,23 @@ function generateLetter(){
         generateLeft--;
     }
     else{
-        // console.log('else');
         document.querySelector('.noHintLeft').style.visibility = 'visible';
         setTimeout(function(){
             document.querySelector('.noHintLeft').style.visibility = 'hidden';
-        },3000);
+        },2100);
     }
-    // score -= 1;
-    audio.src = 'game_sounds/tap.wav';
-    audio.play();
+    audioFunction(path[0]);
 }
 
 function save(){
     updateHighScore();
     updateScore();
-    audio.src = 'game_sounds/tap.wav';
-    audio.play();
+    audioFunction(path[0]);
 }
 
 
 const playBtn = document.querySelector('.play');
 const pauseBtn = document.querySelector('.pause');
-// console.log(typeof backgroundAudio.ariaDisabled);
 function music(){
     if(backgroundAudio.ariaDisabled === 'false'){
         backgroundAudio.ariaDisabled = 'true';
@@ -507,7 +489,5 @@ function music(){
         playBtn.style.display = 'block';
         pauseBtn.style.display = 'none';
     }
-    audio.src = 'game_sounds/tap.wav';
-    audio.play();
-
+    audioFunction(path[0]);
 }

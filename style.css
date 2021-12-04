@@ -58,9 +58,23 @@ body{
     /* background-color: blue; */
     justify-content: space-evenly;
     align-items: center;
-    font-size: clamp(1.5vw,1.5em,3vw);
+    font-size: 1.8em;
+    /* font-size: clamp(1.5vw,1.5em,3vw); */
     z-index: 10000;
-    margin-right: 20px;
+    margin-right: 10px;
+    flex-direction: column;
+    height: 20vh;
+    /* position: relative; */
+}
+.widget span{
+    width: 100%;
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
 }
 
 .widget .toggleColorMode{
@@ -74,6 +88,7 @@ body{
     position: relative;
     cursor: pointer;
     margin-right: 10px;
+    text-align: center;
 }
 .widget .musicControl{
     height: 100%;
@@ -96,6 +111,7 @@ body{
 }
 .widget .musicControl i{
     position: absolute;
+    width: 100%;
 }
 
 .widget .musicControl .play{
@@ -107,6 +123,7 @@ body{
 
 .widget .toggleColorMode i{
     position: absolute;
+    width: 100%;
     /* background-color: red; */
 }
 
@@ -119,12 +136,8 @@ body{
 }
 
 .scoresDetails .help{
-    /* margin-right: 2vw; */
-    /* padding: 5px; */
     width: fit-content;
     border-radius: 50%;
-    /* height: 20px; */
-    /* aspect-ratio: 1; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -138,11 +151,13 @@ body .scoresDetails .help_details{
     position: absolute;
     top: 10px;
     right: 50px;
-    background: rgba(255, 255, 255, 0.493);
-    z-index: 100;
+    background: rgba(136, 124, 124, 0.493);
+    z-index: 100000000;
     padding: 10px;
     border-radius: 20px;
     backdrop-filter: blur(10px);
+    /* width: 70%;
+    height: 40%; */
     /* transition: 1s; */
     visibility: hidden;
     font-size: clamp(1.5vw,1.5em, 2.8vw);
@@ -168,6 +183,7 @@ body .help:focus + .help_details{
     text-align: center;
     margin: 20px auto;
     top: 30px;
+    z-index: -10;
 }
 .main{
     height: 100vh;
