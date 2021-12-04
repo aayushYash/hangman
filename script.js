@@ -181,7 +181,7 @@ function audioFunction(path){
     audio.load();
     setTimeout(() => {
         audio.pause();
-    },1000);
+    },2000);
 }
 
 
