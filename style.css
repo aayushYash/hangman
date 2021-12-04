@@ -41,6 +41,7 @@ body{
     place-items: center;
     /* background-color: red; */
     text-align: left;
+    font-weight: 800;
 }
 
 .scoresDetails .scores div{
@@ -48,20 +49,18 @@ body{
     width: 100%;
     position: relative;
     margin: 0 auto;
-
+    font-weight: 800;
 }
 
 .widget{
     display: flex;
     width: 20%;
     gap: 10px;
-    /* background-color: blue; */
     justify-content: space-evenly;
     align-items: center;
     font-size: 1.8em;
-    /* font-size: clamp(1.5vw,1.5em,3vw); */
     z-index: 10000;
-    margin-right: 10px;
+    margin-right: 0;
     flex-direction: column;
     height: 20vh;
     /* position: relative; */
@@ -79,8 +78,6 @@ body{
 
 .widget .toggleColorMode{
     height: 100%;
-    /* overflow: hidden; */
-    /* background-color: red; */
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -156,13 +153,8 @@ body .scoresDetails .help_details{
     padding: 10px;
     border-radius: 20px;
     backdrop-filter: blur(10px);
-    /* width: 70%;
-    height: 40%; */
-    /* transition: 1s; */
     visibility: hidden;
     font-size: clamp(1.5vw,1.5em, 2.8vw);
-    /* font-size: clamp(1.5vw); */
-    /* height: 40px; */
 }
 
 
@@ -182,8 +174,12 @@ body .help:focus + .help_details{
     position: relative;
     text-align: center;
     margin: 20px auto;
-    top: 30px;
+    top: 40px;
+    border-bottom: 1px solid #000;
     z-index: -10;
+}
+.dark .gameName{
+    border-bottom: 1px solid #fff;
 }
 .main{
     height: 100vh;
@@ -377,7 +373,7 @@ body .help:focus + .help_details{
     font-weight: 900;
     height: 20px;
     position: absolute;
-    top: -30px;
+    top: 0;
     text-align: center;
 
     /* display: none; */
